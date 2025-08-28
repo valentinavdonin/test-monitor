@@ -1,0 +1,18 @@
+[Unit]
+Description=Monitor 'test' process and ping monitoring endpoint
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/test-monitor/test-monitor.env
+ExecStart=/usr/local/bin/test-monitor.sh
+
+# Hardening
+User=root
+Group=root
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=full
+ProtectHome=yes
+ReadWritePaths=/var/lib/test-monitor /var/log/monitoring.log /run/lock

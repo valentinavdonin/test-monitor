@@ -1,0 +1,11 @@
+[Unit]
+Description=Run test-monitor every minute
+
+[Timer]
+OnCalendar=*-*-* *:*:00
+AccuracySec=1s
+Persistent=true
+Unit=test-monitor.service
+
+[Install]
+WantedBy=timers.target
